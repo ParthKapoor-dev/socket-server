@@ -19,10 +19,10 @@ int main(){
   int bind_status = bind( soc , ( struct sockaddr *) &server_address , sizeof(server_address));
 
   if(bind_status == 0){
-    printf("Connection is successful");
+    printf("Binding is successful");
 
   }else {
-    printf("Connection Failed!");
+    printf("Binding Failed!");
   }
   
 }
