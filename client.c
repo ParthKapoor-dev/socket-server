@@ -29,7 +29,6 @@ int main(){
 
     printf("Connection is Established \n");
   
-// bzero(sendline, 100);
     fgets(sendline , 100 , stdin);
     ssize_t sent_status = send(soc , sendline , strlen(sendline) , 0);
     ssize_t recv_status = recv(soc , recvline , 100 , 0);
