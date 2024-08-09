@@ -3,11 +3,16 @@
 #include <sys/types.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
+#include <string.h>
 
+// Google's IP Address 
 #define PORT 80
 #define IP "142.250.194.238"
 
 int main(){
+  
+  char sendline[100];
+  char recvline[100];
 
   int soc = socket(AF_INET, SOCK_STREAM , 0);
   
@@ -20,10 +25,20 @@ int main(){
 
   int connection = connect(soc , (struct sockaddr *) &server_address , sizeof(server_address));
   
-  printf("Connection return values is : %d \n" , connection);
-
   if(connection == 0){
-    printf("Connection is Established");
+
+    printf("Connection is Established \n");
+  
+// bzero(sendline, 100);
+    fgets(sendline , 100 , stdin);
+    ssize_t sent_status = send(soc , sendline , strlen(sendline) , 0);
+    ssize_t recv_status = recv(soc , recvline , 100 , 0);
+
+    printf("Sent_Status : %ld \n" , sent_status);
+    printf("Recv_Status : %ld \n" , recv_status);
+
+    printf("Recived Info : %s", recvline);
+
   }else{
     printf("Connection couldn't be established");
   }
