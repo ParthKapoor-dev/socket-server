@@ -3,11 +3,14 @@
 #include <sys/socket.h>
 #include <string.h>
 #include <netdb.h>
+#include <unistd.h>
 
 #define PORT 3000
 
 int main(){
-
+  
+  char str[100];
+  
   int soc = socket( AF_INET , SOCK_STREAM, 0);
   
   struct sockaddr_in server_address;
@@ -16,10 +19,22 @@ int main(){
   server_address.sin_port = htons(PORT);
   server_address.sin_addr.s_addr = htonl(INADDR_ANY);
 
-  int bind_status = bind( soc , ( struct sockaddr *) &server_address , sizeof(server_address));
+  bind( soc , ( struct sockaddr *) &server_address , sizeof(server_address));
+  
+  int listening_status =  listen( soc , 10);
 
-  if(bind_status == 0){
-    printf("Binding is successful");
+  if(listening_status == 0){
+    printf("Server is Listening at Port %d \n" , PORT);
+
+    while(1){
+      int acceptance = accept( soc , (struct sockaddr*) NULL , NULL );
+      bzero(str , 100);
+      recv( acceptance , str , 100 , 0 );
+      printf("Received Info : %s \n" , str);
+
+      send( acceptance , str , strlen(str) , 0);
+      close(acceptance);
+    }
 
   }else {
     printf("Binding Failed!");

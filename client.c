@@ -6,8 +6,12 @@
 #include <string.h>
 
 // Google's IP Address 
-#define PORT 80
-#define IP "142.250.194.238"
+// #define PORT 80
+// #define IP "216.58.200.206"
+
+// Localhost
+#define PORT 3000
+#define IP "127.0.0.1"
 
 int main(){
   
