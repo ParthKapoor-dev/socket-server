@@ -43,7 +43,7 @@ int main(){
     printf("Recived Info : %s", recvline);
 
   }else{
-    printf("Connection couldn't be established");
+    printf("Connection couldn't be established : %d" , connection);
   }
 
 }
