@@ -27,13 +27,13 @@ int main(){
     printf("Server is Listening at Port %d \n" , PORT);
 
     while(1){
-      int acceptance = accept( soc , (struct sockaddr*) NULL , NULL );
+      int client_soc = accept( soc , (struct sockaddr*) NULL , NULL );
       bzero(str , 100);
-      recv( acceptance , str , 100 , 0 );
+      recv( client_soc , str , 100 , 0 );
       printf("Received Info : %s \n" , str);
 
-      send( acceptance , str , strlen(str) , 0);
-      close(acceptance);
+      send( client_soc , str , strlen(str) , 0);
+      close(client_soc);
     }
 
   }else {
