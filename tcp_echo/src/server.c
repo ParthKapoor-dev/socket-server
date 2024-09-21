@@ -32,8 +32,15 @@ int main(){
       recv( client_soc , str , 100 , 0 );
       printf("Received Info : %s \n" , str);
 
+      str[strcspn(str, "\n")] = 0;
+
+      if(strcmp(str , "exit") == 0){
+        close(client_soc);
+        printf("Socket Closed");
+        break;
+      }
+
       send( client_soc , str , strlen(str) , 0);
-      close(client_soc);
     }
 
   }else {
