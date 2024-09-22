@@ -5,10 +5,6 @@
 #include <arpa/inet.h>
 #include <string.h>
 
-// Google's IP Address 
-// #define PORT 80
-// #define IP "216.58.200.206"
-
 // Localhost
 #define PORT 3000
 #define IP "127.0.0.1"
@@ -36,6 +32,7 @@ int main(){
     fgets(sendline , 100 , stdin);
     ssize_t sent_status = send(soc , sendline , strlen(sendline) , 0);
     ssize_t recv_status = recv(soc , recvline , 100 , 0);
+
 
     printf("Sent_Status : %ld \n" , sent_status);
     printf("Recv_Status : %ld \n" , recv_status);

@@ -32,6 +32,14 @@ int main(){
       recv( client_soc , str , 100 , 0 );
       printf("Received Info : %s \n" , str);
 
+      // Socket Options
+      int optval;
+      socklen_t optlen = sizeof(optval);
+      getsockopt(client_soc , SOL_SOCKET, SO_REUSEADDR , &optval , &optlen);
+
+      printf("Optval of reusing address with this client : %d \n" , optval);
+
+
       str[strcspn(str, "\n")] = 0;
 
       if(strcmp(str , "exit") == 0){
