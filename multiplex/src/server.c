@@ -16,6 +16,9 @@ int main() {
 
     fd_set soc_set;
 
+    char *ip;
+    int client_port;
+
     char buffer[MAXLINE];
     char str[MAXLINE];
 
@@ -50,6 +53,11 @@ int main() {
 
             socklen_t client_len = sizeof(client_address);  // Fix
             int client_soc = accept(tcp_soc, (struct sockaddr*) &client_address, &client_len);  // Fix
+            
+            ip = inet_ntoa(client_address.sin_addr); 
+            client_port = ntohs(client_address.sin_port);
+            
+            printf("Client IP Address : %s:%i \n" , ip , client_port);
 
             if (fork() == 0) {
 
