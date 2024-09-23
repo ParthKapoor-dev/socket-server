@@ -3,6 +3,10 @@
 #include <stdlib.h>
 #include <arpa/inet.h>
 #include <sys/socket.h>
+#include <netinet/in.h>
+#include <sys/types.h>
+#include <netdb.h>
+#include <unistd.h>
 
 #define PORT 22000
 #define BUFFER_SIZE 100
