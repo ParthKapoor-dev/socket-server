@@ -6,8 +6,8 @@
 #include <string.h>
 
 // Localhost
-#define PORT 3000
-#define IP "127.0.0.1"
+#define PORT 4000
+#define IP "172.17.0.2"
 
 int main(){
   
